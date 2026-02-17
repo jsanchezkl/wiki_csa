@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EWiki - Policies & Benefits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#0f49bd",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#101622",
+                },
+                fontFamily: {
+                    "display": ["Inter", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    body {
+        min-height: max(884px, 100dvh);
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display">
+<div class="relative flex min-h-screen w-full bg-white dark:bg-background-dark overflow-x-hidden">
+
+<!-- SIDEBAR -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark fixed top-0 left-0 h-screen flex flex-col z-40 shrink-0">
+<div class="p-6">
+<a href="code.html" class="text-primary text-2xl font-bold tracking-tight">EWiki</a>
+</div>
+<div class="px-4 mb-6">
+<label class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 text-sm">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary/20 transition-all text-xs font-medium text-slate-900 dark:text-white" placeholder="Search..." type="text"/>
+</label>
+</div>
+<div class="flex-1 overflow-y-auto hide-scrollbar px-2 space-y-6">
+<nav class="space-y-1 px-2">
+<p class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Menu</p>
+<a href="code.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-colors">
+<span class="material-symbols-outlined text-xl">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">bookmark</span>
+<span>Saved</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">history</span>
+<span>Activity</span>
+</a>
+</nav>
+<div class="space-y-1 px-2">
+<div class="flex items-center justify-between px-3 mb-2">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Departments</p>
+<button class="text-primary text-[10px] font-bold">VIEW ALL</button>
+</div>
+<div class="relative">
+<button onclick="toggleSubmenu('hr-submenu', this)" class="flex items-center justify-between w-full px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-xl text-blue-500">groups</span>
+<span>HR</span>
+</div>
+<span class="material-symbols-outlined text-lg transition-transform duration-200 rotate-180" id="hr-submenu-arrow">expand_more</span>
+</button>
+<div id="hr-submenu" class="pl-9 mt-1 space-y-1">
+<a href="policies.html" class="flex items-center gap-3 px-3 py-2 text-primary bg-primary/5 rounded-lg text-xs font-semibold transition-colors">
+<span class="material-symbols-outlined text-lg text-blue-400">policy</span>
+<span>Policies & Benefits</span>
+</a>
+<a href="onboarding.html" class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-xs transition-colors">
+<span class="material-symbols-outlined text-lg text-blue-400">person_add</span>
+<span>Onboarding</span>
+</a>
+<a href="training.html" class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-xs transition-colors">
+<span class="material-symbols-outlined text-lg text-blue-400">school</span>
+<span>Training</span>
+</a>
+</div>
+</div>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-xl text-indigo-500">settings_suggest</span>
+<span>IT Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-xl text-emerald-500">tactic</span>
+<span>Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-xl text-amber-500">gavel</span>
+<span>Legal</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-xl text-rose-500">campaign</span>
+<span>Marketing</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-xl text-purple-500">payments</span>
+<span>Finance</span>
+</a>
+</div>
+</div>
+<div class="p-4 border-t border-slate-100 dark:border-slate-800">
+<button class="flex w-full items-center justify-center gap-2 px-4 py-2.5 bg-primary text-white rounded-lg font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity text-sm">
+<span class="material-symbols-outlined text-xl">add</span>
+<span>Create New</span>
+</button>
+</div>
+</aside>
+
+<!-- MAIN CONTENT WRAPPER -->
+<div class="flex-1 flex flex-col ml-64 min-w-0">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-30 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800">
+<div class="px-8 py-4 flex items-center gap-8">
+<div class="flex-1 flex items-center gap-4">
+<a href="code.html" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-600">arrow_back</span>
+</a>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">Policies & Benefits</h2>
+</div>
+<div class="flex items-center gap-6">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-slate-900 dark:text-white">Alex Johnson</p>
+<p class="text-[10px] text-slate-500">Product Designer</p>
+</div>
+<div class="size-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden ring-2 ring-white dark:ring-slate-700">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClHFwW-_gLNl1VeArx3XPW7HeCFfZMeU3Vkf6qZa0R-35Vms8wIox1S-saHbJfL7b3ZFFiulsN-KS-fPd87SQ5LW5u28hkKaLkF1Xe4n7sNxSt0SL_YA1_Kv5aOcyyuFKHuayRhq1cqs_UwZSQmnNt945YkYd5u5Wb_aPhA7KWL29PY1EZZ9Ufdqxd_rO6CeIXswck4H4nMFWB1-8TwTQqYFDL1fjXzvJuLcbECyx0xnFEmqpW4T6E_cESQyoRBdbyR0RGIo2ffDjR"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="flex-1 bg-background-light dark:bg-background-dark/50 w-full">
+<div class="flex gap-8 p-8">
+<!-- Sidebar TOC -->
+<aside class="w-56 flex-shrink-0 sticky top-24 h-fit hidden lg:block">
+<nav class="flex flex-col gap-1">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 px-3">On this page</p>
+<a href="#overview" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/5 text-primary font-semibold text-sm">
+<span class="material-symbols-outlined text-lg">info</span>Overview
+</a>
+<a href="#health-insurance" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-lg">health_and_safety</span>Health Insurance
+</a>
+<a href="#time-off" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-lg">beach_access</span>Time Off
+</a>
+<a href="#retirement" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-lg">savings</span>Retirement
+</a>
+</nav>
+<div class="mt-8 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+<p class="text-xs text-slate-500 mb-3">Questions about benefits? Contact HR directly.</p>
+<button class="w-full py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-semibold rounded-lg hover:shadow-sm transition-all">Contact HR</button>
+</div>
+</aside>
+
+<!-- Main Article -->
+<article class="flex-1">
+<div class="mb-8" id="overview">
+<div class="flex items-center gap-2 text-primary font-semibold text-xs mb-4">
+<span>HR</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Policies & Benefits</span>
+</div>
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-extrabold leading-tight mb-4">Employee Policies & Benefits</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6">Comprehensive guide to all employee benefits, company policies, and resources available to you as a team member.</p>
+<div class="mb-8 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-primary aspect-[21/9] relative flex items-center justify-center">
+<div class="text-center text-white z-10">
+<span class="material-symbols-outlined text-6xl mb-2">policy</span>
+<p class="text-lg font-semibold">Your Benefits Guide</p>
+</div>
+<div class="absolute -right-10 -bottom-10 size-40 bg-white/10 rounded-full blur-3xl"></div>
+</div>
+</div>
+
+<!-- Health Insurance Section -->
+<section class="scroll-mt-32 mb-12" id="health-insurance">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">health_and_safety</span>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Health Insurance</h2>
+</div>
+<p class="text-slate-600 dark:text-slate-400 mb-6">We provide comprehensive health coverage for all full-time employees starting from day one.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="p-5 rounded-2xl border border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800">
+<span class="material-symbols-outlined text-primary mb-3">medical_services</span>
+<h4 class="font-bold text-slate-900 dark:text-white mb-2">Medical Coverage</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">PPO and HDHP plans available with 90% employer-paid premiums.</p>
+</div>
+<div class="p-5 rounded-2xl border border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800">
+<span class="material-symbols-outlined text-primary mb-3">dentistry</span>
+<h4 class="font-bold text-slate-900 dark:text-white mb-2">Dental & Vision</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Full dental and vision coverage included at no additional cost.</p>
+</div>
+</div>
+</section>
+
+<hr class="my-10 border-slate-100 dark:border-slate-700"/>
+
+<!-- Time Off Section -->
+<section class="scroll-mt-32 mb-12" id="time-off">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">beach_access</span>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Time Off Policy</h2>
+</div>
+<p class="text-slate-600 dark:text-slate-400 mb-6">We believe in work-life balance and offer flexible time off policies.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
+<h4 class="font-bold text-primary mb-2">Paid Time Off</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400">20 days PTO per year, increasing with tenure.</p>
+</div>
+<div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
+<h4 class="font-bold text-primary mb-2">Sick Leave</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400">Unlimited sick days - your health comes first.</p>
+</div>
+<div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
+<h4 class="font-bold text-primary mb-2">Holidays</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400">12 company holidays plus winter break closure.</p>
+</div>
+<div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700">
+<h4 class="font-bold text-primary mb-2">Parental Leave</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400">16 weeks fully paid parental leave.</p>
+</div>
+</div>
+</section>
+
+<hr class="my-10 border-slate-100 dark:border-slate-700"/>
+
+<!-- Retirement Section -->
+<section class="scroll-mt-32 mb-12" id="retirement">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">savings</span>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Retirement Benefits</h2>
+</div>
+<p class="text-slate-600 dark:text-slate-400 mb-6">Plan for your future with our competitive retirement benefits.</p>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<li class="flex gap-3 p-4 border border-slate-100 dark:border-slate-700 rounded-xl items-center bg-white dark:bg-slate-800">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">401(k) with 4% company match</span>
+</li>
+<li class="flex gap-3 p-4 border border-slate-100 dark:border-slate-700 rounded-xl items-center bg-white dark:bg-slate-800">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Immediate vesting</span>
+</li>
+<li class="flex gap-3 p-4 border border-slate-100 dark:border-slate-700 rounded-xl items-center bg-white dark:bg-slate-800">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Financial planning resources</span>
+</li>
+<li class="flex gap-3 p-4 border border-slate-100 dark:border-slate-700 rounded-xl items-center bg-white dark:bg-slate-800">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Stock options available</span>
+</li>
+</ul>
+</section>
+
+<!-- Resources Card -->
+<section class="p-6 bg-slate-900 rounded-2xl text-white overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="text-xl font-bold mb-4">Related Documents</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<a class="flex items-center justify-between p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all cursor-pointer" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium text-sm">Benefits Guide 2024.pdf</span>
+</div>
+<span class="material-symbols-outlined">download</span>
+</a>
+<a class="flex items-center justify-between p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all cursor-pointer" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium text-sm">Employee Handbook.pdf</span>
+</div>
+<span class="material-symbols-outlined">download</span>
+</a>
+</div>
+</div>
+<div class="absolute -right-10 -bottom-10 w-32 h-32 bg-primary/30 rounded-full blur-3xl"></div>
+</section>
+</article>
+</div>
+</main>
+</div>
+
+<!-- FAB: Wiki Assistant -->
+<div class="fixed right-4 z-50 flex flex-col items-end gap-3 pointer-events-none bottom-6">
+<div class="pointer-events-auto bg-slate-900 text-white text-xs font-medium py-2 px-4 rounded-lg shadow-xl relative animate-bounce">
+How can I help you today?
+<div class="absolute w-2 h-2 bg-slate-900 rotate-45 -bottom-1 right-5"></div>
+</div>
+<button class="pointer-events-auto size-14 rounded-full bg-primary text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">smart_toy</span>
+</button>
+</div>
+</div>
+
+<script>
+function toggleSubmenu(submenuId, button) {
+    const submenu = document.getElementById(submenuId);
+    const arrow = document.getElementById(submenuId + '-arrow');
+    
+    if (submenu.classList.contains('hidden')) {
+        submenu.classList.remove('hidden');
+        arrow.style.transform = 'rotate(180deg)';
+    } else {
+        submenu.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+    }
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+steps:
+  # Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '--build-arg'
+      - 'VITE_API_URL=${_VITE_API_URL}'
+      - '-t'
+      - '${_IMAGE_NAME}'
+      - '.'
+  
+  # Push to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_IMAGE_NAME}'
+
+substitutions:
+  _VITE_API_URL: 'http://localhost:8000/api'
+  _IMAGE_NAME: 'us-central1-docker.pkg.dev/${PROJECT_ID}/wiki-images/wiki-frontend:latest'
+
+images:
+  - '${_IMAGE_NAME}'
+
+
+
+
