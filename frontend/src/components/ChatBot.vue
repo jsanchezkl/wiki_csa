@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed right-4 bottom-6 z-50 flex flex-col items-end gap-3">
+  <div class="fixed right-2 sm:right-4 bottom-4 sm:bottom-6 z-50 flex flex-col items-end gap-2 sm:gap-3">
     <!-- Chat Window -->
     <Transition
       enter-active-class="transition-all duration-300 ease-out"
@@ -11,7 +11,7 @@
     >
       <div 
         v-show="isOpen"
-        class="w-96 h-[32rem] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden"
+        class="w-[calc(100vw-1rem)] sm:w-96 h-[70vh] sm:h-[32rem] max-h-[600px] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden"
       >
         <!-- Header -->
         <div class="bg-gradient-to-r from-primary to-indigo-600 p-4 text-white">
@@ -171,13 +171,13 @@
       <button 
         @click="toggleChat"
         :class="[
-          'size-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300',
+          'size-12 sm:size-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300',
           isOpen 
             ? 'bg-slate-700 hover:bg-slate-800 rotate-0' 
             : 'bg-primary hover:scale-110 active:scale-95'
         ]"
       >
-        <span class="material-symbols-outlined text-3xl text-white">
+        <span class="material-symbols-outlined text-2xl sm:text-3xl text-white">
           {{ isOpen ? 'close' : 'smart_toy' }}
         </span>
       </button>

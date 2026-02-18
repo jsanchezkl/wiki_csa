@@ -2,39 +2,74 @@
   <div class="min-h-screen bg-slate-50 dark:bg-background-dark">
     <!-- Admin Header -->
     <header class="sticky top-0 z-30 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-      <div class="px-8 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-4">
+      <div class="px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 sm:gap-4 min-w-0">
+          <button 
+            @click="showMobileMenu = !showMobileMenu"
+            class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors lg:hidden"
+          >
+            <span class="material-symbols-outlined text-slate-600 dark:text-slate-400">menu</span>
+          </button>
           <router-link 
             to="/" 
-            class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+            class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors hidden sm:flex"
           >
             <span class="material-symbols-outlined text-slate-600">arrow_back</span>
           </router-link>
-          <div class="flex items-center gap-3">
-            <div class="p-2 bg-primary/10 rounded-lg">
-              <span class="material-symbols-outlined text-primary">admin_panel_settings</span>
+          <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div class="p-1.5 sm:p-2 bg-primary/10 rounded-lg shrink-0">
+              <span class="material-symbols-outlined text-primary text-lg sm:text-2xl">admin_panel_settings</span>
             </div>
-            <div>
-              <h1 class="text-xl font-bold text-slate-900 dark:text-white">Panel de Administración</h1>
-              <p class="text-xs text-slate-500">Gestiona tu Wiki corporativo</p>
+            <div class="min-w-0">
+              <h1 class="text-base sm:text-xl font-bold text-slate-900 dark:text-white truncate">Panel de Administración</h1>
+              <p class="text-[10px] sm:text-xs text-slate-500 hidden sm:block">Gestiona tu Wiki corporativo</p>
             </div>
           </div>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 sm:gap-4 shrink-0">
           <router-link 
             to="/admin/pages/new"
-            class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium"
+            class="flex items-center gap-1 sm:gap-2 bg-primary text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
           >
             <span class="material-symbols-outlined text-lg">add</span>
-            Nueva Página
+            <span class="hidden sm:inline">Nueva Página</span>
           </router-link>
         </div>
       </div>
     </header>
 
+    <!-- Mobile Menu Overlay -->
+    <Transition
+      enter-active-class="transition-opacity duration-300"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-300"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div 
+        v-if="showMobileMenu" 
+        @click="showMobileMenu = false"
+        class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+      ></div>
+    </Transition>
+
     <div class="flex">
       <!-- Admin Sidebar -->
-      <aside class="w-64 min-h-screen bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800">
+      <aside 
+        :class="[
+          'w-64 min-h-screen bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-transform duration-300 ease-in-out',
+          'fixed lg:static top-0 left-0 z-50 lg:z-auto pt-16 lg:pt-0',
+          showMobileMenu ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        ]"
+      >
+        <!-- Mobile close button -->
+        <button 
+          @click="showMobileMenu = false"
+          class="absolute top-4 right-4 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden"
+        >
+          <span class="material-symbols-outlined text-slate-600 dark:text-slate-400">close</span>
+        </button>
         <nav class="p-4">
           <div class="space-y-1">
             <router-link 
@@ -77,112 +112,112 @@
       </aside>
 
       <!-- Main Content -->
-      <main class="flex-1 p-8">
+      <main class="flex-1 p-4 sm:p-6 lg:p-8">
         <!-- Stats Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center justify-between mb-4">
-              <span class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl">
-                <span class="material-symbols-outlined text-blue-600">folder</span>
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+          <div class="bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-2 sm:mb-4">
+              <span class="p-2 sm:p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg sm:rounded-xl">
+                <span class="material-symbols-outlined text-blue-600 text-lg sm:text-2xl">folder</span>
               </span>
-              <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full">+2</span>
+              <span class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full hidden sm:block">+2</span>
             </div>
-            <p class="text-3xl font-bold text-slate-900 dark:text-white mb-1">{{ stats.active_categories }}</p>
-            <p class="text-sm text-slate-500">Categorías Activas</p>
+            <p class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mb-0.5 sm:mb-1">{{ stats.active_categories }}</p>
+            <p class="text-[10px] sm:text-xs lg:text-sm text-slate-500">Categorías</p>
           </div>
           
-          <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center justify-between mb-4">
-              <span class="p-3 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl">
-                <span class="material-symbols-outlined text-emerald-600">article</span>
+          <div class="bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-2 sm:mb-4">
+              <span class="p-2 sm:p-3 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg sm:rounded-xl">
+                <span class="material-symbols-outlined text-emerald-600 text-lg sm:text-2xl">article</span>
               </span>
-              <span class="text-xs px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full">{{ stats.published_pages }} publicadas</span>
+              <span class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full hidden sm:block">{{ stats.published_pages }} pub</span>
             </div>
-            <p class="text-3xl font-bold text-slate-900 dark:text-white mb-1">{{ stats.total_pages }}</p>
-            <p class="text-sm text-slate-500">Total de Páginas</p>
+            <p class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mb-0.5 sm:mb-1">{{ stats.total_pages }}</p>
+            <p class="text-[10px] sm:text-xs lg:text-sm text-slate-500">Páginas</p>
           </div>
           
-          <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center justify-between mb-4">
-              <span class="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-xl">
-                <span class="material-symbols-outlined text-amber-600">edit_note</span>
+          <div class="bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-2 sm:mb-4">
+              <span class="p-2 sm:p-3 bg-amber-100 dark:bg-amber-900/30 rounded-lg sm:rounded-xl">
+                <span class="material-symbols-outlined text-amber-600 text-lg sm:text-2xl">edit_note</span>
               </span>
-              <span class="text-xs px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 rounded-full">Borrador</span>
+              <span class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 rounded-full hidden sm:block">Borrador</span>
             </div>
-            <p class="text-3xl font-bold text-slate-900 dark:text-white mb-1">{{ stats.draft_pages }}</p>
-            <p class="text-sm text-slate-500">Páginas en Borrador</p>
+            <p class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mb-0.5 sm:mb-1">{{ stats.draft_pages }}</p>
+            <p class="text-[10px] sm:text-xs lg:text-sm text-slate-500">Borradores</p>
           </div>
           
-          <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center justify-between mb-4">
-              <span class="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-xl">
-                <span class="material-symbols-outlined text-purple-600">visibility</span>
+          <div class="bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-2 sm:mb-4">
+              <span class="p-2 sm:p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg sm:rounded-xl">
+                <span class="material-symbols-outlined text-purple-600 text-lg sm:text-2xl">visibility</span>
               </span>
             </div>
-            <p class="text-3xl font-bold text-slate-900 dark:text-white mb-1">{{ stats.total_views }}</p>
-            <p class="text-sm text-slate-500">Vistas Totales</p>
+            <p class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mb-0.5 sm:mb-1">{{ stats.total_views }}</p>
+            <p class="text-[10px] sm:text-xs lg:text-sm text-slate-500">Vistas</p>
           </div>
         </div>
 
         <!-- Chat AI / RAG Indexing Module -->
-        <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-6 mb-8 text-white">
-          <div class="flex items-start justify-between">
-            <div class="flex items-center gap-4">
-              <div class="p-3 bg-white/20 rounded-xl">
-                <span class="material-symbols-outlined text-3xl">psychology</span>
+        <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 text-white">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-0">
+            <div class="flex items-center gap-3 sm:gap-4">
+              <div class="p-2 sm:p-3 bg-white/20 rounded-lg sm:rounded-xl shrink-0">
+                <span class="material-symbols-outlined text-2xl sm:text-3xl">psychology</span>
               </div>
               <div>
-                <h2 class="text-xl font-bold mb-1">Wiki Assistant AI</h2>
-                <p class="text-white/80 text-sm">Base de conocimiento para el chatbot</p>
+                <h2 class="text-lg sm:text-xl font-bold mb-0.5 sm:mb-1">Wiki Assistant AI</h2>
+                <p class="text-white/80 text-xs sm:text-sm">Base de conocimiento para el chatbot</p>
               </div>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 self-start">
               <span 
-                class="px-3 py-1 rounded-full text-sm font-medium"
+                class="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
                 :class="chatStats.enabled ? 'bg-emerald-400/20 text-emerald-200' : 'bg-red-400/20 text-red-200'"
               >
-                <span class="inline-block w-2 h-2 rounded-full mr-2" :class="chatStats.enabled ? 'bg-emerald-400' : 'bg-red-400'"></span>
+                <span class="inline-block w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full mr-1.5 sm:mr-2" :class="chatStats.enabled ? 'bg-emerald-400' : 'bg-red-400'"></span>
                 {{ chatStats.enabled ? 'Activo' : 'Inactivo' }}
               </span>
             </div>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-4 sm:mt-6">
             <!-- Stats -->
-            <div class="bg-white/10 rounded-xl p-4">
-              <div class="flex items-center gap-3 mb-2">
-                <span class="material-symbols-outlined text-white/60">description</span>
-                <span class="text-white/60 text-sm">Documentos Indexados</span>
+            <div class="bg-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4">
+              <div class="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <span class="material-symbols-outlined text-white/60 text-lg sm:text-2xl">description</span>
+                <span class="text-white/60 text-xs sm:text-sm">Docs Indexados</span>
               </div>
-              <p class="text-3xl font-bold">{{ chatStats.indexed_documents }}</p>
+              <p class="text-2xl sm:text-3xl font-bold">{{ chatStats.indexed_documents }}</p>
             </div>
             
-            <div class="bg-white/10 rounded-xl p-4">
-              <div class="flex items-center gap-3 mb-2">
-                <span class="material-symbols-outlined text-white/60">smart_toy</span>
-                <span class="text-white/60 text-sm">Modelo Chat</span>
+            <div class="bg-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4">
+              <div class="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <span class="material-symbols-outlined text-white/60 text-lg sm:text-2xl">smart_toy</span>
+                <span class="text-white/60 text-xs sm:text-sm">Modelo Chat</span>
               </div>
-              <p class="text-lg font-semibold truncate">{{ chatStats.model || 'N/A' }}</p>
+              <p class="text-sm sm:text-lg font-semibold truncate">{{ chatStats.model || 'N/A' }}</p>
             </div>
             
-            <div class="bg-white/10 rounded-xl p-4">
-              <div class="flex items-center gap-3 mb-2">
-                <span class="material-symbols-outlined text-white/60">data_array</span>
-                <span class="text-white/60 text-sm">Modelo Embeddings</span>
+            <div class="bg-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4">
+              <div class="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <span class="material-symbols-outlined text-white/60 text-lg sm:text-2xl">data_array</span>
+                <span class="text-white/60 text-xs sm:text-sm">Embeddings</span>
               </div>
-              <p class="text-lg font-semibold truncate">{{ chatStats.embedding_model || 'N/A' }}</p>
+              <p class="text-sm sm:text-lg font-semibold truncate">{{ chatStats.embedding_model || 'N/A' }}</p>
             </div>
           </div>
           
-          <div class="mt-6 flex items-center justify-between">
-            <p class="text-white/60 text-sm">
+          <div class="mt-4 sm:mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+            <p class="text-white/60 text-xs sm:text-sm hidden sm:block">
               <span class="material-symbols-outlined text-sm align-middle mr-1">info</span>
-              Indexa el contenido cuando agregues o elimines páginas para mantener el chat actualizado
+              Indexa el contenido cuando agregues o elimines páginas
             </p>
             <button 
               @click="indexContent"
               :disabled="isIndexing"
-              class="flex items-center gap-2 bg-white text-indigo-600 px-6 py-3 rounded-xl font-semibold hover:bg-white/90 transition-all disabled:opacity-70 disabled:cursor-wait"
+              class="flex items-center justify-center gap-2 bg-white text-indigo-600 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold hover:bg-white/90 transition-all disabled:opacity-70 disabled:cursor-wait w-full sm:w-auto text-sm sm:text-base"
             >
               <span 
                 class="material-symbols-outlined"
@@ -217,7 +252,7 @@
         </div>
 
         <!-- Quick Actions -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           <!-- Recent Pages -->
           <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
             <div class="p-6 border-b border-slate-200 dark:border-slate-800">
@@ -319,6 +354,9 @@ import { useRoute } from 'vue-router'
 import { getAdminStats, getCategories, getPages, getChatStats, indexChatContent } from '../../api'
 
 const route = useRoute()
+
+// Mobile menu state
+const showMobileMenu = ref(false)
 
 const stats = ref({
   total_categories: 0,

@@ -1,5 +1,18 @@
 <template>
-  <aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark fixed top-0 left-0 h-screen flex flex-col z-40 shrink-0">
+  <aside 
+    :class="[
+      'w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark fixed top-0 left-0 h-screen flex flex-col z-40 shrink-0 transition-transform duration-300 ease-in-out',
+      isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+    ]"
+  >
+    <!-- Mobile close button -->
+    <button 
+      @click="$emit('close')"
+      class="absolute top-4 right-4 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden"
+    >
+      <span class="material-symbols-outlined text-slate-600 dark:text-slate-400">close</span>
+    </button>
+    
     <div class="p-6">
       <router-link to="/" class="flex items-center gap-3">
         <img 
@@ -279,6 +292,16 @@
 import { ref, reactive, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getSidebar, getSettings, isAdmin, search } from '../api'
+
+// Props and emits
+defineProps({
+  isOpen: {
+    type: Boolean,
+    default: false
+  }
+})
+
+defineEmits(['close'])
 
 // User permissions
 const userIsAdmin = computed(() => isAdmin())

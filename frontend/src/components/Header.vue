@@ -1,18 +1,25 @@
 <template>
   <header class="sticky top-0 z-30 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800">
-    <div class="px-8 py-4 flex items-center gap-8">
-      <div class="flex-1 flex items-center gap-4">
+    <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4 flex items-center gap-3 sm:gap-6 md:gap-8">
+      <div class="flex-1 flex items-center gap-2 sm:gap-4">
+        <!-- Mobile menu button -->
+        <button 
+          @click="$emit('toggleSidebar')"
+          class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors lg:hidden"
+        >
+          <span class="material-symbols-outlined text-slate-600 dark:text-slate-400">menu</span>
+        </button>
         <router-link 
           v-if="showBack" 
           to="/" 
-          class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+          class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors hidden sm:flex"
         >
           <span class="material-symbols-outlined text-slate-600">arrow_back</span>
         </router-link>
-        <h2 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">{{ title }}</h2>
+        <h2 class="text-slate-900 dark:text-white text-base sm:text-lg md:text-xl font-bold tracking-tight truncate">{{ title }}</h2>
       </div>
-      <div class="flex items-center gap-6">
-        <button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+      <div class="flex items-center gap-2 sm:gap-4 md:gap-6">
+        <button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors hidden sm:flex">
           <span class="material-symbols-outlined">notifications</span>
         </button>
         
@@ -20,17 +27,17 @@
         <div class="relative" ref="dropdownRef">
           <button 
             @click="toggleDropdown"
-            class="flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg p-2 transition-colors"
+            class="flex items-center gap-1 sm:gap-3 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg p-1.5 sm:p-2 transition-colors"
           >
-            <div class="text-right hidden sm:block">
+            <div class="text-right hidden md:block">
               <p class="text-xs font-bold text-slate-900 dark:text-white">{{ userName }}</p>
               <p class="text-[10px] text-slate-500">{{ userRole }}</p>
             </div>
-            <div class="size-10 flex items-center justify-center rounded-full overflow-hidden ring-2 ring-white dark:ring-slate-700"
+            <div class="size-8 sm:size-10 flex items-center justify-center rounded-full overflow-hidden ring-2 ring-white dark:ring-slate-700"
                  :class="userIsAdmin ? 'bg-gradient-to-br from-primary to-indigo-600' : 'bg-slate-200 dark:bg-slate-700'">
-              <span class="material-symbols-outlined text-white text-xl">person</span>
+              <span class="material-symbols-outlined text-white text-lg sm:text-xl">person</span>
             </div>
-            <span class="material-symbols-outlined text-slate-400 text-lg">expand_more</span>
+            <span class="material-symbols-outlined text-slate-400 text-base sm:text-lg hidden sm:block">expand_more</span>
           </button>
           
           <!-- Dropdown menu -->
@@ -44,7 +51,7 @@
           >
             <div 
               v-show="showDropdown"
-              class="absolute right-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 py-2 z-50"
+              class="absolute right-0 mt-2 w-56 sm:w-64 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 py-2 z-50"
             >
               <div class="px-4 py-3 border-b border-slate-100 dark:border-slate-700">
                 <p class="text-sm font-bold text-slate-900 dark:text-white">{{ userName }}</p>
@@ -102,6 +109,8 @@ defineProps({
     default: false
   }
 })
+
+defineEmits(['toggleSidebar'])
 
 const router = useRouter()
 const showDropdown = ref(false)

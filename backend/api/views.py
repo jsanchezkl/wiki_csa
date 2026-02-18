@@ -210,7 +210,7 @@ class SiteSettingsViewSet(viewsets.ModelViewSet):
 def api_root(request):
     return Response({
         'status': 'ok',
-        'message': 'EWiki API v1.0',
+        'message': 'CSA API v1.0',
         'endpoints': {
             'menu': '/api/menu/',
             'categories': '/api/categories/',
