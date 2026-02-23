@@ -19,6 +19,10 @@ class WikiSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = WikiSection
         fields = ['id', 'title', 'slug', 'content', 'icon', 'icon_color', 'order', 'is_active']
+        extra_kwargs = {
+            'slug': {'required': False, 'allow_blank': True},
+            'content': {'required': False, 'allow_blank': True},
+        }
 
 
 class WikiPageSerializer(serializers.ModelSerializer):
@@ -75,6 +79,8 @@ class WikiPageCreateUpdateSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
+        from django.utils.text import slugify
+        
         sections_data = validated_data.pop('sections', [])
         # Soportar tanto 'department' como 'category'
         if 'department' in validated_data and 'category' not in validated_data:
@@ -83,11 +89,25 @@ class WikiPageCreateUpdateSerializer(serializers.ModelSerializer):
             validated_data.pop('department')
         
         page = WikiPage.objects.create(**validated_data)
-        for section_data in sections_data:
+        
+        for idx, section_data in enumerate(sections_data):
+            # Generar slug si está vacío
+            if not section_data.get('slug'):
+                title = section_data.get('title', f'section-{idx}')
+                section_data['slug'] = slugify(title) or f'section-{idx}'
+            
+            # Asegurar que content tenga un valor por defecto
+            if not section_data.get('content'):
+                section_data['content'] = ''
+            
+            section_data.pop('id', None)  # Remover id si existe
             WikiSection.objects.create(page=page, **section_data)
+        
         return page
 
     def update(self, instance, validated_data):
+        from django.utils.text import slugify
+        
         sections_data = validated_data.pop('sections', None)
         # Soportar tanto 'department' como 'category'
         if 'department' in validated_data:
@@ -102,17 +122,54 @@ class WikiPageCreateUpdateSerializer(serializers.ModelSerializer):
         
         if sections_data is not None:
             existing_ids = []
-            for section_data in sections_data:
+            for idx, section_data in enumerate(sections_data):
                 section_id = section_data.get('id')
+                
+                # Generar slug si está vacío
+                if not section_data.get('slug'):
+                    title = section_data.get('title', f'section-{idx}')
+                    section_data['slug'] = slugify(title) or f'section-{idx}'
+                
+                # Asegurar que content tenga un valor por defecto
+                if not section_data.get('content'):
+                    section_data['content'] = ''
+                
+                section = None
+                
+                # Primero intentar buscar por ID
                 if section_id:
-                    section = WikiSection.objects.get(id=section_id, page=instance)
+                    try:
+                        section = WikiSection.objects.get(id=section_id, page=instance)
+                    except WikiSection.DoesNotExist:
+                        section = None
+                
+                # Si no se encontró por ID, buscar por slug para evitar duplicados
+                if section is None:
+                    slug = section_data.get('slug')
+                    if slug:
+                        section = WikiSection.objects.filter(page=instance, slug=slug).first()
+                
+                if section:
+                    # Actualizar sección existente
                     for attr, value in section_data.items():
-                        setattr(section, attr, value)
+                        if attr != 'id':
+                            setattr(section, attr, value)
                     section.save()
-                    existing_ids.append(section_id)
+                    existing_ids.append(section.id)
                 else:
+                    # Crear nueva sección solo si no existe
+                    section_data.pop('id', None)
+                    # Asegurar slug único agregando sufijo si es necesario
+                    base_slug = section_data.get('slug')
+                    counter = 1
+                    while WikiSection.objects.filter(page=instance, slug=section_data['slug']).exists():
+                        section_data['slug'] = f"{base_slug}-{counter}"
+                        counter += 1
                     new_section = WikiSection.objects.create(page=instance, **section_data)
                     existing_ids.append(new_section.id)
+            
+            # Eliminar secciones que ya no están en los datos enviados
+            WikiSection.objects.filter(page=instance).exclude(id__in=existing_ids).delete()
         
         return instance
 
